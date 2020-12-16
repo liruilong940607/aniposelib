@@ -4,7 +4,6 @@ from copy import copy
 from scipy.sparse import lil_matrix, dok_matrix
 from scipy import optimize
 from scipy import signal
-from numba import jit
 from collections import defaultdict, Counter
 import toml
 import itertools
@@ -17,7 +16,6 @@ from .boards import merge_rows, extract_points, \
 from .utils import get_initial_extrinsics, make_M, get_rtvec, \
     get_connections
 
-@jit(nopython=True, parallel=True)
 def triangulate_simple(points, camera_mats):
     num_cams = len(camera_mats)
     A = np.zeros((num_cams * 2, 4))
@@ -613,7 +611,6 @@ class CameraGroup:
                                          progress=progress)
 
 
-    @jit(nopython=True, parallel=True, forceobj=True)
     def reprojection_error(self, p3ds, p2ds, mean=False):
         """Given an Nx3 array of 3D points and an CxNx2 array of 2D points,
         where N is the number of points and C is the number of cameras,
@@ -815,7 +812,6 @@ class CameraGroup:
         error = self.average_error(p2ds)
         return error
 
-    @jit(nopython=True, parallel=True, forceobj=True)
     def _error_fun_bundle(self, params, p2ds, n_cam_params, extra):
         """Error function for bundle adjustment"""
         good = ~np.isnan(p2ds)
@@ -1200,7 +1196,6 @@ class CameraGroup:
 
 
 
-    @jit(nopython=True, forceobj=True, parallel=True)
     def _error_fun_triangulation(self, params, p2ds,
                                  constraints=[],
                                  constraints_weak=[],

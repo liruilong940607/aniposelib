@@ -11,7 +11,7 @@ setuptools.setup(
     description="An easy-to-use library for calibrating cameras in python, made for Anipose",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/lambdaloop/aniposelib",
+    url="https://github.com/liruilong940607/aniposelib",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -21,8 +21,8 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Image Recognition"
     ],
     install_requires=[
-        'opencv-contrib-python~=3.4',
-        'numba', 'pandas',
+        'opencv-python',
+        'pandas',
         'numpy', 'scipy', 'toml', 'tqdm'
     ],
     extras_require={
