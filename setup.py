@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="aniposelib",
+    name="aniposelib-smplify",
     version="0.3.9",
     author="Pierre Karashchuk",
     author_email="krchtchk@gmail.com",
